@@ -1,0 +1,25 @@
+{% extends 'admin_navbar.html' %}
+{% block body %}
+<div class="container my-4">
+    <h2>Pending Book Issue Requests</h2>
+    <table class="container table">
+        <tr>
+            <th>Student</th>
+            <th>Book</th>
+            <th>Request Date</th>
+            <th>Actions</th>
+        </tr>
+        {% for request in issue_requests %}
+        <tr>
+            <td>{{ request.student.user.username }}</td>
+            <td>{{ request.book.name }}</td>
+            <td>{{ request.request_date }}</td>
+            <td>
+                <a href="{% url 'handle_request' request.id 'accept' %}">Accept</a> |
+                <a href="{% url 'handle_request' request.id 'reject' %}">Reject</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

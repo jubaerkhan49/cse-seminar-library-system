@@ -1,0 +1,9 @@
+{% extends 'student_navbar.html' %}
+{% block body %}
+<h2>Request a Book</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Request</button>
+</form>
+{% endblock %}
