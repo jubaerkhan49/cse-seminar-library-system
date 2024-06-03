@@ -1,41 +1,170 @@
 {% extends 'admin_navbar.html' %}
 {% load static %}
 {% block title %} Library Management System {% endblock %}
-{% block css %}
-{% endblock %}
 {% block body %}
-<div class="container">
-    <form method="POST"> {% csrf_token %}
-    <div class="row mt-4">
-        <div class="form-group col-md-12">
-            <label><i style="font-weight: bold;">Book Name</i></label>
-            <input type="text" class="form-control mt-2" name="name" placeholder="Enter name of the Book" required>
+<!-- add book -->
+<div class="wrapper">
+    <div class="container admin-content">
+        <div class="background-img">
         </div>
-    </div>
+        <div class="book-content card-height">
+            <div class="card w-50 card-content">
+                <div class="card-body cb">
+                    <p class="card-text">
+                    <h1 class="text-center book-title">Add Book</h1>
+                    <form method="POST"> {% csrf_token %}
+                        <div class="row mt-4">
+                            <div class="form-group col-md-12 form-content">
+                                <label><i>Book Name</i></label>
+                                <input type="text" class="form-control mt-2" name="name"
+                                    placeholder="Enter name of the Book" required>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="form-group col-md-12 form-content">
+                                <label><i>Author Name</i></label>
+                                <input type="text" class="form-control mt-2" name="author"
+                                    placeholder="Enter name of the Author" required>
+                            </div>
+                        </div>
 
-    <div class="row mt-4">
-        <div class="form-group col-md-12">
-            <label><i style="font-weight: bold;">Author Name</i></label>
-            <input type="text" class="form-control mt-2" name="author" placeholder="Enter name of the Author" required>
-        </div>
-    </div>
+                        <div class="row mt-4">
+                            <div class="form-group col-md-12 form-content">
+                                <label><i>ISBN Number</i></label>
+                                <input type="number" class="form-control mt-2" name="isbn"
+                                    placeholder="Enter ISBN number of the book" required>
+                            </div>
+                        </div>
 
-    <div class="row mt-4">
-        <div class="form-group col-md-12">
-            <label><i style="font-weight: bold;">ISBN Number</i></label>
-            <input type="number" class="form-control mt-2" name="isbn" placeholder="Enter ISBN number of the book" required>
-        </div>
-    </div>
+                        <div class="row mt-4">
+                            <div class="form-group col-md-12 form-content">
+                                <label><i>Category</i></label>
+                                <input type="text" class="form-control mt-2" name="category"
+                                    placeholder="Enter Category of the book" required>
+                            </div>
+                        </div>
 
-    <div class="row mt-4">
-        <div class="form-group col-md-12">
-            <label><i style="font-weight: bold;">Category</i></label>
-            <input type="text" class="form-control mt-2" name="category" placeholder="Enter Category of the book" required>
+                        <div class="row mt-4">
+                          <div class="form-group col-md-12 form-content">
+                              <label><i>Book Edition</i></label>
+                              <input type="text" class="form-control mt-2" name="edition"
+                                  placeholder="Enter the Book Edition" required>
+                          </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="form-group col-md-12 form-content">
+                                <label><i>Cover Page Image</i></label>
+                                <input type="file" class="form-control mt-2" name="cover_page" placeholder="Upload The Coverpage image of the book" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-4">
+                          <div class="form-group col-md-12 form-content">
+                              <label><i>Availability Status</i></label>
+                              <select class="form-control mt-2" name="is_available" required>
+                                  <option value="True" disabled selected hidden>Select Availability</option>
+                                  <option value="True">Yes</option>
+                                  <option value="False">No</option>
+                              </select>
+                          </div>
+                      </div>
+                        <button type="submit" class="btn btn-outline-primary mt-4 bg-btn ">Add Book</button>
+                    </form>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-outline-primary mt-4">Add Book</button>
+     <!-- footer -->
+  <div>
+    <footer class="text-center text-lg-start bg-body-tertiary text-muted pt-1 mt-4">
+        <!-- Section: Links  -->
+        <section class="">
+          <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  <i class="fa-solid fa-map-location-dot"></i>&nbsp;&nbsp;
+                  <span>Dept of CSE, Jahangirnagar University</span>
+                </h6>
+                <p>
+                  JU CSE Seminar Library is established in 1991, the department has been working for producing highly skilled IT professionals and researchers. Dedicated faculty and highly rich labs contribute to a rich academic experience. The department is well-equipped with dedicated lab facilities, ensuring ample space to accommodate students' needs.</p>
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  CSE Clubs
+                </h6>
+                <p>
+                  <a href="#!" class="text-reset">JU CSE Robotics Club</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">JU CSE Cyber Forensic</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">CSE Programming Club</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">CSE IT Club</a>
+                </p>
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  Useful links
+                </h6>
+                <p>
+                  <a href="https://juniv.edu" class="text-reset">JU CSE Official Website</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">Photo Gallery</a>
+                </p>
+                <p>
+                  <a href="https://openlibrary.org/" class="text-reset">OpenBookLibrary</a>
+                </p>
+                <p>
+                  <a href="https://library.juniv.edu/" class="text-reset">JU Central Library</a>
+                </p>
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                <p><i class="fas fa-home me-3"></i> Dept. of CSE, Savar-1342, Jahangirnagar University</p>
+                <p>
+                  <i class="fas fa-envelope me-3"></i>
+                  seminar.cse@juniv.edu
+                </p>
+                <p><i class="fas fa-phone me-3"></i> +8801515343543</p>
+                <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+          </div>
+        </section>
+        <!-- Section: Links  -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+          © 2024 Copyright:
+          <a class="text-reset fw-bold text-decoration-none" href="https://juniv.edu">Jahangirnagar University</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
 </div>
-</form>
 {% endblock %}
 {% block js %}
 <script>

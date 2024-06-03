@@ -4,18 +4,19 @@ from datetime import datetime,timedelta
 
 
 class Book(models.Model):
+    cover_page = models.ImageField(upload_to="cover_image/", blank=True)
     name = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     isbn = models.PositiveIntegerField()
     category = models.CharField(max_length=50)
     edition = models.CharField(max_length=50, blank=True)
-
+    is_available = models.BooleanField(default=True)
     def __str__(self):
         return str(self.name) + " ["+str(self.isbn)+']'
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    classroom = models.CharField(max_length=10)
+    classroom = models.CharField(max_length=100)
     branch = models.CharField(max_length=50)
     roll_no = models.CharField(max_length=3, blank=True)
     phone = models.CharField(max_length=10, blank=True)

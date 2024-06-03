@@ -14,7 +14,8 @@ import logging
 # Set up logging
 logger = logging.getLogger(__name__)
 def index(request):
-    return render(request, "index.html")
+    books = Book.objects.all()
+    return render(request, "index.html", {'books':books})
 
 @login_required(login_url = '/admin_login')
 def add_book(request):
@@ -23,8 +24,10 @@ def add_book(request):
         author = request.POST['author']
         isbn = request.POST['isbn']
         category = request.POST['category']
-
-        books = Book.objects.create(name=name, author=author, isbn=isbn, category=category)
+        cover_page = request.FILES.get('cover_page')
+        edition = request.POST['edition']
+        is_available = request.POST['is_available'] == 'True'
+        books = Book.objects.create(name=name, author=author, isbn=isbn, category=category, cover_page=cover_page, edition=edition, is_available=is_available)
         books.save()
         alert = True
         return render(request, "add_book.html", {'alert':alert})
@@ -250,7 +253,8 @@ def request_book(request):
             issue_request = form.save(commit=False)
             issue_request.student = request.user.student
             issue_request.save()
-            return redirect('profile')
+            alert = True
+            return render(request, 'request_book.html', {'alert':alert})
     else:
         form = IssueRequestForm()
     return render(request, 'request_book.html', {'form': form})
@@ -260,6 +264,7 @@ def admin_panel(request):
     if not request.user.is_staff:
         return redirect('login')
     issue_requests = IssueRequest.objects.filter(status='Pending')
+    books = Book.objects.all()
     return render(request, 'admin_panel.html', {'issue_requests': issue_requests})
 
 @login_required(login_url='/admin_login')

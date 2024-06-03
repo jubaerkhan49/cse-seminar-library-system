@@ -1,79 +1,223 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
 
-    <title>{% block title %} {% endblock %}</title>
-    {% block css %}
-    {% endblock %}
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-dark sticky-top" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">CSE Seminar Library System</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <title>{% block title %} {% endblock %}</title>
+  <!-- student_navbar -->
+  <style>
+    .navbar {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    /* #navbarSupportedContent {
+      padding-left: 90px;
+    } */
+
+    .gap-custom {
+      gap: 6.5rem !important;
+      /*104px*/
+    }
+
+    .title {
+      font-weight: 900;
+      font-size: 2.25rem;
+      /*36px*/
+    }
+
+    #nav-items {
+      display: flex;
+      flex-direction: row;
+      justify-content: right;
+      align-items: center;
+      gap: 14px;
+      padding-left: 2px;
+      padding-top: 19px;
+    }
+
+    #nav-items-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: right;
+      gap: 15px;
+      align-items: center;
+      padding-left: 20px;
+    }
+
+    .icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    #icon-style {
+      color: #ffffff;
+    }
+
+    .student-name {
+      padding-left: 53px;
+      font-weight: 600;
+      /* font-family: Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+      font-size: large;
+      display: block;
+      width: 150px;
+      word-wrap: break-word;
+      white-space: normal;
+      /* Allow line breaks */
+    }
+
+    .student-info {
+      /* padding-bottom: 25px; */
+      margin-bottom: 25px;
+    }
+
+    /* Profile file styles */
+    
+    .profile {
+      padding: 3%;
+      margin-top: 3%;
+      margin-bottom: 3%;
+      border-radius: 0.5rem;
+      background: rgb(241, 241, 241);
+      padding-top: 20px;
+      font-size: 20px;
+    }
+
+    .profile-img {
+      text-align: center;
+    }
+    .profile-img .file {
+      position: relative;
+      overflow: hidden;
+      margin-top: -20%;
+      width: 70%;
+      border: none;
+      border-radius: 0;
+      font-size: 15px;
+      background: #212529b8;
+    }
+
+    /* footer */
+    #footer-content {
+      background-color: transparent;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      width: 100%;
+    }
+
+    .bg-f {
+      background-image: linear-gradient(to right, rgba(229, 231, 235, 0), rgb(107 114 128 0.65));
+    }
+
+    .edit-profile {
+      background-color:rgb(241, 241, 241);
+      padding: 15px;
+      margin-top: 30px;
+      border-radius: 15px;
+    }
+    .nav-item.icon:hover a, .nav-item.icon:hover i {
+      color: rgb(15, 218, 157);
+    }
+    .nav-item.icon a, .nav-item.icon i {
+      display: inline-flex; /* Align items horizontally and vertically */
+      align-items: center;
+      color: inherit;
+      gap: 0.5rem; /* Add a bit of space between icon and text */
+      transition: color 0.3s ease; /* Smooth color transition */
+}
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark sticky-top" data-bs-theme="dark">
+    <div class="container-fluid gap-custom">
+      <div class="ju-logo">
+        <img src="../static/JU_logo.png" height="100px" widht="100px" />
+      </div>
+      <a class="navbar-brand title" href="#">CSE Seminar Library System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div id="nav-items">
+            <div id="nav-items-content">
+              <div>
+                <li class="nav-item icon">
+                  <i class="fa-solid fa-pen-to-square fa-xl" id="icon-style"></i>
+                  <a class="nav-link active" aria-current="page" href="/change_password/">Change Password</a>
+                </li>
+              </div>
+              <div>
+                <li class="nav-item icon">
+                  <i class="fa-solid fa-user fa-xl" id="icon-style"></i>
+                  <a class="nav-link active" aria-current="page" href="/profile/">Profile</a>
+                </li>
+              </div>
+              <div>
+                <li class="nav-item icon">
+                  <i class="fa-solid fa-book fa-xl" id="icon-style"></i>
+                  <a class="nav-link active" aria-current="page" href="/student_issued_books/">Borrowed Books</a>
+                </li>
+              </div>
+              <div>
+                <li class="nav-item icon">
+                  <i class="fa-solid fa-right-from-bracket fa-xl" id="icon-style"></i>
+                  <a class="nav-link active" aria-current="page" href="/logout/">Logout</a>
+                </li>
+              </div>
+              <div>
+                <li class="nav-item icon">
+                  <i class="fa-solid fa-bell fa-xl" id="icon-style"></i>
+                  <a class="nav-link active" aria-current="page" href="/request_book/">Book Borrow Request</a>
+                </li>
+              </div>
+            </div>
+            <div class="student-name">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/change_password/">Change Password</a>
+                <a class="nav-link active student-info" href="#">Welcome: <br> {{request.user}}</a>
               </li>
-              &nbsp;&nbsp;&nbsp;
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/profile/">Profile</a>
-              </li>
-              &nbsp;&nbsp;&nbsp;
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/student_issued_books/">View Issued Books</a>
-              </li>
-              &nbsp;&nbsp;&nbsp;
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/logout/">Logout</a>
-              </li>
-              &nbsp;&nbsp;&nbsp;
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/request_book/">Book Issue Request</a>
-              </li>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <li class="nav-item">
-                <a style="font-weight:600; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: large;" class="nav-link active" href="#">Welcome:{{request.user}}</a>
-              </li>
-            </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-      {% block body %}
-      {% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% block body %}
+  {% endblock %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 
-    {% block js %}
-    <script>
-      $(document).ready(function () {
-        $('#example').DataTable({
-          dom: 'Bfrtip',
-          buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-          ]
-        });
+  {% block js %}
+  <script>
+    $(document).ready(function () {
+      $('#example').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+          'copyHtml5',
+          'excelHtml5',
+          'csvHtml5',
+          'pdfHtml5'
+        ]
       });
-    </script>
-    {% endblock %}
-  </body>
+    });
+  </script>
+  {% endblock %}
+</body>
+
 </html>

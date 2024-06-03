@@ -1,103 +1,256 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>{% block title %} {% endblock %}</title>
-    <style>
-      .navbar {
-        padding-left: 30px;
-        padding-right: 30px;
-      }
-      .navbar a {
-        font-size: 20px;
-      }
-      #navbarSupportedContent {
-        padding-left: 25px;
-      }
-      .icon{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-      }
-      #nav-items{
-        display: flex;
-        flex-direction: row;
-        justify-content: right;
-        align-items: center;
-        gap: 14px;
-        padding-left: 173px;
-        padding-top: 19px;
 
-      }
-      #pointer:hover{
-        color: blue;
-      }
-      #icon-style{
-        color: #ffffff;
-      }
-      #icon-style:hover{
-        color: blueviolet;
-      }
-      .title {
-        font-weight: 100;
-      }
-      .bg-text {
-        padding-right: 400px;
-        padding-bottom: 50px;
-        text-align: left;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Add shadow to the text */
-        font-weight: bold; /* Increase font weight */
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg sticky-top bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-          <div class="ju-logo">
-            <img src="../static/JU_logo.png" height="100px" widht="100px">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <title>{% block title %} {% endblock %}</title>
+  <!-- basic.html -->
+  <style>
+    .navbar {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    #navbarSupportedContent {
+      padding-left: 25px;
+    }
+
+    .icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #nav-items {
+      display: flex;
+      flex-direction: row;
+      justify-content: right;
+      align-items: center;
+      gap: 14px;
+      padding-left: 173px;
+      padding-top: 19px;
+    }
+
+    #pointer:hover {
+      color: rgb(15, 218, 157);
+    }
+
+    #icon-style {
+      color: #ffffff;
+    }
+
+    #icon-style:hover {
+      color: blueviolet;
+    }
+
+    .title {
+      font-weight: 900;
+      font-size: 2.25rem;
+      /*36px*/
+    }
+
+    .gap-custom {
+      gap: 6.5rem !important;
+      /*104px*/
+    }
+
+    .bg-text {
+      padding-right: 400px;
+      padding-bottom: 50px;
+      text-align: left;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+      /* Add shadow to the text */
+      font-weight: bold;
+      /* Increase font weight */
+    }
+
+    /* admin_login styles start */
+    .background-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      max-width: 100vw;
+      width: 100%;
+      background-image: url("../static/Seminar-Library-Photos/20240528_134910.jpg");
+      /* background-color: blue; */
+      background-size: cover;
+      background-position: center;
+      filter: blur(3px);
+      /* blur amount */
+      z-index: -1;
+      /* background image stays behind the content */
+    }
+
+    .content {
+      position: relative;
+      color: white;
+      text-align: center;
+      z-index: 1;
+      /* content is above the background image */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
+      /* background image height control */
+      max-width: 100vw;
+      padding-top: 40px;
+      padding-left: 100px;
+      padding-bottom: 200px;
+    }
+
+    .card-content {
+      margin: 20px;
+      padding: 20px;
+      background-color: rgba(75, 85, 78, 0.65);
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    }
+
+    .cb {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    .admin-title {
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgb(6, 27, 23);
+    }
+
+    .form-content {
+      text-align: left;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgb(6, 27, 23);
+    }
+
+    .bg-btn {
+      background-color: aliceblue;
+      font-weight: bold;
+      font-size: large;
+    }
+
+    /* footer style */
+    .container .admin-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card.w-100.card-content {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    #footer-content {
+      background-color: transparent;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      width: 100%;
+    }
+
+    .bg-f {
+      background-image: linear-gradient(to right, rgba(229, 231, 235, 0), rgb(107 114 128 0.65));
+    }
+
+    /* student_registration style */
+    .stu-background-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 130vh;
+      max-width: 100vw;
+      width: 100%;
+      background-image: url("../static/Seminar-Library-Photos/20240528_134334.jpg");
+      background-size: cover;
+      background-position: center;
+      filter: blur(3px);
+      /* blur amount */
+      z-index: -1;
+      /* background image stays behind the content */
+
+    }
+
+    .student-content {
+      position: relative;
+      color: white;
+      text-align: center;
+      z-index: 1;
+      /* content is above the background image */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 115vh;
+      /* background image height control */
+      max-width: 100vw;
+      padding-top: 40px;
+      padding-left: 100px;
+      padding-bottom: 200px;
+    }
+    .student-title {
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgb(6, 27, 23);
+    }
+    .card-height{
+      padding-top: 200px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top bg-dark" data-bs-theme="dark">
+    <div class="container-fluid gap-custom">
+      <div class="ju-logo">
+        <img src="../static/JU_logo.png" height="100px" widht="100px" />
+      </div>
+      <a class="navbar-brand title" href="#">CSE Seminar Library System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div id="nav-items">
+            <div>
+              <li class="nav-item icon">
+                <i class="fa-solid fa-house fa-xl" id="icon-style"></i>
+                <a class="nav-link active" id="pointer" aria-current="page" href="/">Home</a>
+              </li>
+            </div>
+            <div>
+              <li class="nav-item icon">
+                <i class="fa-solid fa-right-to-bracket fa-xl" id="icon-style"></i>
+                <a class="nav-link active" id="pointer" href="/admin_login/">Librarian Login</a>
+              </li>
+            </div>
+            <div>
+              <li class="nav-item icon">
+                <i class="fa-regular fa-address-card fa-xl" id="icon-style"></i>
+                <a class="nav-link active" id="pointer" href="/student_registration/">Register As Student</a>
+              </li>
+            </div>
+            <div>
+              <li class="nav-item icon">
+                <i class="fa-solid fa-chalkboard-user fa-xl" id="icon-style"></i>
+                <a class="nav-link active" id="pointer" href="/student_login/">Student Login</a>
+              </li>
+            </div>
           </div>
-          <a class="navbar-brand title" href="#">CSE Seminar Library System</a>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <div id="nav-items">
-                <div>
-                  <li class="nav-item icon">
-                  <i class="fa-solid fa-house fa-xl" id="icon-style"></i>
-                  <a class="nav-link active" id="pointer" aria-current="page" href="/">Home</a>
-                </li>
-              </div>
-              <div>
-                <li class="nav-item icon">
-                  <i class="fa-solid fa-right-to-bracket fa-xl" id="icon-style"></i>
-                  <a class="nav-link active" id="pointer" href="/admin_login/">Librarian Login</a>
-                </li>
-              </div>
-              <div>
-                <li class="nav-item icon">
-                  <i class="fa-regular fa-address-card fa-xl" id="icon-style"></i>
-                  <a class="nav-link active" id="pointer" href="/student_registration/">Register As Student</a>
-                </li>
-              </div>
-              <div>
-                <li class="nav-item icon">
-                  <i class="fa-solid fa-chalkboard-user fa-xl" id="icon-style"></i>
-                  <a class="nav-link active" id="pointer" href="/student_login/">Student Login</a>
-                </li>
-              </div>
-              </div>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      {% block body %}
-      {% endblock %}
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    {% block js %}
-    {% endblock %}
-  </body>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% block body %} {% endblock %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  {% block js %} {% endblock %}
+</body>
+
 </html>

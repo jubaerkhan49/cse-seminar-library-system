@@ -1,0 +1,42 @@
+# Ignore the  .env.local file  which contains the  email credential
+.env.local
+
+# Ignore all .log files
+*.log
+
+# Ignore the node_modules directory
+node_modules
+
+# Ignore file rename Script
+rename_script.ps1
+
+# Ignore Library Photos
+Seminar-Library-Photos
+
+#Ignore Research-Papers
+Research-Papers
+
+# Environments
+.env
+.env.local
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+settings.py
+
+# Distribution / packaging
+.Python
+env/
+venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

@@ -24,37 +24,37 @@
   </div>
   </div>
 </div> -->
-<div id="carouselExampleCaptions" class="carousel slide">
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../static/SS2.png" class="d-block w-100" alt="..." height="300px">
+    <div class="carousel-item active" data-bs-interval="2000">
+      <img src="../static/Library-Views/02_Library-View.jpg" class="d-block w-100" alt="..." height="300px">
       <div class="carousel-caption d-none d-md-block">
         <div class="bg-text">
-          <h5>Welcome to CSE Seminar Library System</h5>
+          <h5 class="text-uppercase">Welcome to CSE Seminar Library System</h5>
           <p>Any student from running academic session can register here. A student can place issue book request to the Librarian. After that you need to return the book within 14 days or else a fine of 10 BDT will be charged per day till the book is returned.</p>
         </div>
       </div>
     </div>
-    <div class="carousel-item">
-      <img src="../static/SS2.png" class="d-block w-100" alt="..." height="300px">
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="../static/Library-Views/02_Library-View.jpg" class="d-block w-100" alt="..." height="300px">
       <div class="carousel-caption d-none d-md-block">
         <div class="bg-text">
-          <h5>Second slide label</h5>
-          <p>Some representative placeholder content for the second slide.</p>
+          <h5 class="text-uppercase">Smart Book Library</h5>
+          <p>A student can make a request from this website for borrowing books. The Librarian will evaluate this.</p>
         </div>
       </div>
     </div>
-    <div class="carousel-item">
-      <img src="../static/SS2.png" class="d-block w-100" alt="..." height="300px">
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="../static/Library-Views/03_Library-View.jpg" class="d-block w-100" alt="..." height="300px">
       <div class="carousel-caption d-none d-md-block">
         <div class="bg-text">
-          <h5>Third slide label</h5>
-          <p>Some representative placeholder content for the third slide.</p>
+          <h5 class="text-uppercase">Access from Anywhere</h5>
+          <p>Any student from CSE can view available books Remotely!</p>
         </div>
       </div>
     </div>
@@ -68,84 +68,30 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
 <div class="container pt-5">
   <div class="row row-cols-1 row-cols-md-5 g-4">
+    {% for book in books %}
     <div class="col">
-      <div class="card h-100 w-100">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <div class="card h-100 w-100 card-size">
+          <img src="{{ book.cover_page.url }}" class="card-img-top" alt="THis is first">
+          <div class="card-body">
+            <h5 class="card-title">{{book.name}}</h5>
+            <p class="card-text">Author: {{book.author}}</p>
+            <p class="card-text">Category: {{book.category}}</p>
+        </div>
+        <div class="card-footer d-flex gap-3 justify-content-center">
+          <div><a href='/student_login/'class="btn btn-primary">Borrow</a></div>
+          <div><a class="btn btn-primary">Details</a></div>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card h-100 w-100">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a short card.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 w-100">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 w-100">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>
 
 <!-- Homepage FOOTER Start -->
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-body-tertiary text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Left -->
-    <div class="me-5 d-none d-lg-block">
-      <span>Get connected with us on social networks:</span>
-    </div>
-    <!-- Left -->
-
-    <!-- Right -->
-    <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
-
+<footer class="text-center text-lg-start bg-body-tertiary text-muted pt-1 mt-4">
   <!-- Section: Links  -->
   <section class="">
     <div class="container text-center text-md-start mt-5">
@@ -155,12 +101,11 @@
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Company name
+            <i class="fa-solid fa-map-location-dot"></i>&nbsp;&nbsp;
+            <span>Dept of CSE, Jahangirnagar University</span>
           </h6>
           <p>
-            Here you can use rows and columns to organize your footer content. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit.
-          </p>
+            JU CSE Seminar Library is established in 1991, the department has been working for producing highly skilled IT professionals and researchers. Dedicated faculty and highly rich labs contribute to a rich academic experience. The department is well-equipped with dedicated lab facilities, ensuring ample space to accommodate students' needs.</p>
         </div>
         <!-- Grid column -->
 
@@ -168,19 +113,19 @@
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
-            Products
+            CSE Clubs
           </h6>
           <p>
-            <a href="#!" class="text-reset">Angular</a>
+            <a href="#!" class="text-reset">JU CSE Robotics Club</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">React</a>
+            <a href="#!" class="text-reset">JU CSE Cyber Forensic</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Vue</a>
+            <a href="#!" class="text-reset">CSE Programming Club</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Laravel</a>
+            <a href="#!" class="text-reset">CSE IT Club</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -192,16 +137,16 @@
             Useful links
           </h6>
           <p>
-            <a href="#!" class="text-reset">Pricing</a>
+            <a href="https://juniv.edu" class="text-reset">JU CSE Official Website</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Settings</a>
+            <a href="#!" class="text-reset">Photo Gallery</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Orders</a>
+            <a href="https://openlibrary.org/" class="text-reset">OpenBookLibrary</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Help</a>
+            <a href="https://library.juniv.edu/" class="text-reset">JU Central Library</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -210,12 +155,12 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <p><i class="fas fa-home me-3"></i> Dept. of CSE, Savar-1342, Jahangirnagar University</p>
           <p>
             <i class="fas fa-envelope me-3"></i>
-            info@example.com
+            seminar.cse@juniv.edu
           </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+          <p><i class="fas fa-phone me-3"></i> +8801515343543</p>
           <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
         </div>
         <!-- Grid column -->
@@ -227,8 +172,8 @@
 
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    © 2024 Copyright:
+    <a class="text-reset fw-bold text-decoration-none" href="https://mdbootstrap.com/">Jahangirnagar University</a>
   </div>
   <!-- Copyright -->
 </footer>

@@ -1,25 +1,38 @@
-{% extends 'admin_navbar.html' %}
-{% block body %}
-<div class="container my-4">
-    <h2>Pending Book Issue Requests</h2>
+{% extends 'admin_navbar.html' %} {% block body %}
+<div class="container box-style">
+  <h2 class="text-center">Pending Book Issue Requests</h2>
+  <div class="design-table">
     <table class="container table">
-        <tr>
-            <th>Student</th>
-            <th>Book</th>
-            <th>Request Date</th>
-            <th>Actions</th>
-        </tr>
-        {% for request in issue_requests %}
-        <tr>
-            <td>{{ request.student.user.username }}</td>
-            <td>{{ request.book.name }}</td>
-            <td>{{ request.request_date }}</td>
-            <td>
-                <a href="{% url 'handle_request' request.id 'accept' %}">Accept</a> |
-                <a href="{% url 'handle_request' request.id 'reject' %}">Reject</a>
-            </td>
-        </tr>
-        {% endfor %}
+      <tr>
+        <th>Student</th>
+        <th>Book</th>
+        <th>Request Date</th>
+        <th>Actions</th>
+        <th>Availability</th>
+      </tr>
+      {% for request in issue_requests %}
+      <tr>
+        <td>{{ request.student.user.username }}</td>
+        <td>{{ request.book.name }}</td>
+        <td class="text-red">{{ request.request_date }}</td>
+        <td>
+          <a
+            href="{% url 'handle_request' request.id 'accept' %}"
+            class="btn btn-primary"
+            >Accept</a
+          >
+          <a
+            href="{% url 'handle_request' request.id 'reject' %}"
+            class="btn btn-danger"
+            >Reject</a
+          >
+        </td>
+        <td>
+          {% if request.book.is_available %} Yes {% else %} No {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
     </table>
+  </div>
 </div>
 {% endblock %}

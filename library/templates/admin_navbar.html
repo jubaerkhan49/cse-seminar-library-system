@@ -1,90 +1,306 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
 
-    <title>{% block title %} {% endblock %}</title>
-    {% block css %}
-    {% endblock %}
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">CSE Seminar Library System</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />
+
+  <title>{% block title %} {% endblock %}</title>
+  <!-- admin_navbar -->
+  <style>
+    .navbar {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    #navbarSupportedContent {
+      padding-left: 90px;
+    }
+
+    .icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #nav-items {
+      display: flex;
+      flex-direction: row;
+      justify-content: right;
+      align-items: center;
+      gap: 30px;
+      padding-left: 134px;
+      padding-top: 19px;
+    }
+
+    #nav-items-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: right;
+      gap: 15px;
+      align-items: center;
+      padding-left: 20px;
+    }
+
+    .title {
+      font-weight: 900;
+      font-size: 2.25rem;
+      /*36px*/
+    }
+
+    #icon-style {
+      color: #ffffff;
+    }
+
+    #icon-style:hover {
+      color: rgb(15, 218, 157);
+    }
+
+    .admin-name {
+      padding-left: 66px;
+      font-weight: 600;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: large;
+      display: block;
+      width: 150px;
+      word-wrap: break-word;
+      white-space: normal;
+      /* Allow line breaks */
+    }
+
+    .admin-info {
+      /* padding-bottom: 25px; */
+      margin-bottom: 25px;
+    }
+
+    /* add_book styles */
+
+
+    .book-title {
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgb(6, 27, 23);
+    }
+
+    .background-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      max-width: 100vw;
+      width: 100%;
+      background-image: url("../static/Seminar-Library-Photos/20240528_134244.jpg");
+      /* background-color: aliceblue; */
+      background-size: cover;
+      background-position: center;
+      /* blur amount */
+      z-index: -1;
+      /* background image stays behind the content */
+    }
+    .book-content {
+      position: relative;
+      color: white;
+      text-align: center;
+      z-index: 1;
+      /* content is above the background image */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      /* background image height control */
+      max-width: 100vw;
+      padding-top: 40px;
+      padding-left: 100px;
+      padding-bottom: 200px;
+    }
+    .card-content {
+      padding-left: 20px;
+      padding-right: 20px;
+      background-color: rgba(75, 85, 78, 0.8);
+      box-shadow: 2px 2px 4px rgba(1, 1, 1, 0.9);
+    }
+    .cb {
+      padding-bottom: 5px;
+      margin-top: 0px;
+    }
+    .card-body {
+      padding-top: 0;
+    }
+    .form-content {
+      text-align: left;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgb(6, 27, 23);
+    }
+    .bg-btn {
+      background-color: aliceblue;
+      font-weight: bold;
+      font-size: large;
+    }
+    /* footer */
+    .container .admin-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card.w-100.card-content {
+      max-width: 600px;
+      margin: auto;
+    }
+    #footer-content {
+      background-color: transparent;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      width: 100%;
+    }
+
+    .bg-f {
+      background-image: linear-gradient(to right, rgba(229, 231, 235, 0), rgb(107 114 128 0.65));
+    }
+    .card-height{
+      padding-top: 200px;
+    }
+    .box-style {
+      padding: 10px;
+      margin-top: 30px;
+      background-color: rgb(237, 237, 237);
+      border-radius: 15px;
+    }
+    .design-table {
+      margin-top: 20px;
+    }
+    .background-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 120vh;
+      max-width: 100vw;
+      width: 100%;
+      background-image: url("../static/Seminar-Library-Photos/20240528_134229.jpg");
+      /* background-color: blue; */
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      /* background image stays behind the content */
+    }
+    .admin-title {
+      color: #ffffff;
+      text-decoration: dashed;
+    }
+    .nav-item.icon:hover a, .nav-item.icon:hover i  {
+      color: rgb(15, 218, 157);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container-fluid gap-4">
+      <div class="ju-logo">
+        <img src="../static/JU_logo.png" height="100px" widht="100px" />
+      </div>
+      <a class="navbar-brand title" href="">CSE Seminar Library System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div id="nav-items">
+            <div id="nav-items-content">
+              <div>
+                <li class="nav-item icon">
+                  <i class="fa-solid fa-user fa-xl" id="icon-style"></i>
+                  <a class="nav-link active" aria-current="page" id="pointer" href="/view_students/">All Students</a>
+                </li>
+              </div>
+              <div>
+                <li class="nav-item dropdown icon">
+                  <i class="fa-solid fa-book fa-xl" id="icon-style"></i>
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown pointer" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    
+                    Books
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                      <a class="dropdown-item" href="/add_book/" id="pointer">Add Books</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/view_books/" id="pointer">All Books</a>
+                    </li>
+                  </ul>
+                </li>
+              </div>
+              <div>
+                <li class="nav-item dropdown icon">
+                  <i class="fa-solid fa-file-signature fa-xl" id="icon-style"></i>
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown pointer" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Issue Book
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                      <a class="dropdown-item" href="/issue_book/" id="pointer">Issue A Book</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/view_issued_book/" id="pointer">All Issued Books</a>
+                    </li>
+                  </ul>
+                </li>
+              </div>
+              <div>
+                <li class="nav-item icon">
+                  <i class="fa-solid fa-right-from-bracket fa-xl" id="icon-style"></i>
+                  <a class="nav-link active" aria-current="page" href="/logout/" id="pointer">Logout</a>
+                </li>
+              </div>
+              <div>
+                <li class="nav-item icon">
+                  <i class="fa-solid fa-bell fa-xl" id="icon-style"></i>
+                  <a class="nav-link active" aria-current="page" href="/admin_panel/" id="pointer">Issue Request</a>
+                </li>
+              </div>
+            </div>
+            <div class="admin-name">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/view_students/">View All Students</a>
+                <a class="nav-link active admin-info" href="#" id="pointer">Admin: <br> {{request.user}}</a>
               </li>
-              &nbsp;&nbsp;&nbsp;
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Books
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="/add_book/">Add Books</a></li>
-                  <li><a class="dropdown-item" href="/view_books/">View All Books</a></li>
-                </ul>
-              </li>
-              &nbsp;&nbsp;&nbsp;
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Issue Book
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="/issue_book/">Issue A Book</a></li>
-                  <li><a class="dropdown-item" href="/view_issued_book/">View All Issued Books</a></li>
-                </ul>
-              </li>
-              &nbsp;&nbsp;&nbsp;
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/logout/">Logout</a>
-              </li>
-              &nbsp;&nbsp;&nbsp;
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/admin_panel/">View Issue Request</a>
-              </li>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <li class="nav-item">
-                <a style="font-weight:600; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: large;" class="nav-link active" href="#">Welcome Admin: {{request.user}}</a>
-              </li>
-            </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-      {% block body %}
-      {% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% block body %} {% endblock %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 
-    {% block js %}
-    <script>
-      $(document).ready(function () {
-        $('#example').DataTable({
-          dom: 'Bfrtip',
-          buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-          ]
-        });
+  {% block js %}
+  <script>
+    $(document).ready(function () {
+      $("#example").DataTable({
+        dom: "Bfrtip",
+        buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
       });
-    </script>
-    {% endblock %}
-  </body>
+    });
+  </script>
+  {% endblock %}
+</body>
+
 </html>
