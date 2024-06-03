@@ -100,9 +100,6 @@ EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)  # or 465 if using SSL
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)  # or EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=True, cast=bool) if using SSL
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-# DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='jucse29.402@gmail.com')  # (Optional) Default sender address
-
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
