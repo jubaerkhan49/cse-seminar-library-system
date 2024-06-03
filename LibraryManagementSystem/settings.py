@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-
+from decouple import Config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -92,13 +92,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Gmail Config
 
+config = Config('.env.local')  # Specify the name of your env file here
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587  # or 465 if using SSL
-EMAIL_USE_TLS = True # or EMAIL_USE_SSL = True if using SSL
-EMAIL_HOST_USER = 'jucse29.402@gmail.com'  # Replace with your Gmail address
-EMAIL_HOST_PASSWORD = 'jide gimp lrge fptd'  # Use App Password (explained below)
-# DEFAULT_FROM_EMAIL = 'jucse29.402@gmail.com'  # (Optional) Default sender address
+EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com')
+EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)  # or 465 if using SSL
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)  # or EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=True, cast=bool) if using SSL
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='jucse29.402@gmail.com')  # (Optional) Default sender address
+
 
 
 # Internationalization
